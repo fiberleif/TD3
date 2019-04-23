@@ -45,7 +45,7 @@ class Dset(object):
         return inputs, labels, rews, next_obs, dones
 
 
-class Mujoco_Dset(object):
+class MujocoDset(object):
     def __init__(self, expert_path, train_fraction=0.7, traj_limitation=-1, randomize=True):
         traj_data = np.load(expert_path)
         if traj_limitation < 0:
@@ -119,7 +119,7 @@ class Mujoco_Dset(object):
 
 
 def test(expert_path, traj_limitation, plot):
-    dset = Mujoco_Dset(expert_path, traj_limitation=traj_limitation)
+    dset = MujocoDset(expert_path, traj_limitation=traj_limitation)
     if plot:
         dset.plot()
 
