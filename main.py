@@ -132,6 +132,7 @@ if __name__ == "__main__":
             evaluations.append(evaluate_policy(policy))
             logger.record_tabular('total-samples', (len(evaluations) - 1) * args.eval_freq)
             logger.record_tabular('return-average', evaluations[-1])
+            logger.dump_tabular()
 
             if args.save_models: policy.save(file_name, directory="./pytorch_models")
             np.save("./results/%s" % (file_name), evaluations)
