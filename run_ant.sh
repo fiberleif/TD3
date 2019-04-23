@@ -13,6 +13,6 @@ do
 	--seed $i \
 	--start_timesteps 10000 \
 	--max_timesteps 2e6 \
-	--eval_freq 2e3 \
+	--eval_freq 2e4 \
 	--expert_path "dataset/ant.npz"
 done
