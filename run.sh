@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Script to reproduce results
-
+export CUDA_VISIBLE_DEVICES=$1
+echo $CUDA_VISIBLE_DEVICES
 for ((i=0;i<5;i+=1))
 do
 	python main.py \
