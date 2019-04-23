@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     # Set seeds
     env.seed(args.seed)
-    eval_env(args.seed)
+    eval_env.seed(args.seed)
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
 
