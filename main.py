@@ -128,7 +128,8 @@ if __name__ == "__main__":
 
         # Evaluate episode
         if (timesteps_since_eval + 1) >= args.eval_freq:
-            timesteps_since_eval %= args.eval_freq
+            # timesteps_since_eval %= args.eval_freq
+            timesteps_since_eval = 0
             evaluations.append(evaluate_policy(policy))
             logger.record_tabular('total-samples', (len(evaluations) - 1) * args.eval_freq)
             logger.record_tabular('return-average', evaluations[-1])
