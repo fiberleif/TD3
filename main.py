@@ -102,10 +102,8 @@ if __name__ == "__main__":
         acs = demo_acs[i]
         rews = demo_rews[i]
         new_obs = demo_next_obs[i]
-        done_bool = demo_dones[i]
-        print(type(new_obs))
-        print(type(done_bool))
-        replay_buffer.add((obs, new_obs, acs, rews, done_bool))
+        done = demo_dones[i]
+        replay_buffer.add((obs, new_obs, acs, float(rews), float(done)))
 
     total_timesteps = 0
     timesteps_since_eval = 0
