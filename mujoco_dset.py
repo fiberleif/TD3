@@ -67,7 +67,7 @@ class MujocoDset(object):
             self.obs = np.vstack(obs)
             self.acs = np.vstack(acs)
             self.next_obs = np.vstack(next_obs)
-        logger.info('demo_obs.shape:{}'.format(obs.shape))
+        logger.log('demo_obs.shape:{}'.format(obs.shape))
         self.rews = np.reshape(rews, [-1, 1])
         self.dones = np.reshape(dones, [-1, 1])
 
