@@ -103,6 +103,8 @@ if __name__ == "__main__":
         rews = demo_rews[i]
         new_obs = demo_next_obs[i]
         done_bool = demo_dones[i]
+        print(type(new_obs))
+        print(type(done_bool))
         replay_buffer.add((obs, new_obs, acs, rews, done_bool))
 
     total_timesteps = 0

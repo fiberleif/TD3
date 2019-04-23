@@ -67,7 +67,7 @@ class MujocoDset(object):
             self.obs = np.vstack(obs)
             self.acs = np.vstack(acs)
             self.next_obs = np.vstack(next_obs)
-        logger.log('demo_obs.shape:{}'.format(obs.shape))
+        print('demo_obs.shape:{}'.format(obs.shape))
         self.rews = np.reshape(rews, [-1, 1])
         self.dones = np.reshape(dones, [-1, 1])
 
@@ -80,21 +80,31 @@ class MujocoDset(object):
         self.num_traj = min(traj_limitation, len(traj_data['obs']))
         self.num_transition = len(self.obs)
         self.randomize = randomize
-        self.dset = Dset(self.obs, self.acs, self.rews, self.next_obs, self.dones, self.randomize)
-        # # for behavior cloning
-        # self.train_set = Dset(self.obs[:int(self.num_transition*train_fraction), :],
-        #                       self.acs[:int(self.num_transition*train_fraction), :],
-        #                       self.randomize)
-        # self.val_set = Dset(self.obs[int(self.num_transition*train_fraction):, :],
-        #                     self.acs[int(self.num_transition*train_fraction):, :],
-        #                     self.randomize)
         self.log_info()
 
+        ### clean dataset
+        clean_obs = []
+        clean_acs = []
+        assert len(self.obs) == len(self.acs)
+        for i in range(len(self.obs)):
+            if np.sum(self.obs[i] ** 2)==0.0 and np.sum(self.acs[i] ** 2)==0.0:
+                print('clean one!')
+            else:
+                clean_obs.append(self.obs[i])
+                clean_acs.append(self.acs[i])
+
+        self.obs = np.array(clean_obs)
+        self.acs = np.array(clean_acs)
+        self.num_transition = len(self.obs)
+        self.dset = Dset(self.obs, self.acs, self.randomize)
+        self.log_info()
+
+
     def log_info(self):
-        logger.log("Total trajectorues: %d" % self.num_traj)
-        logger.log("Total transitions: %d" % self.num_transition)
-        logger.log("Average returns: %f" % self.avg_ret)
-        logger.log("Std for returns: %f" % self.std_ret)
+        print("Total trajectorues: %d" % self.num_traj)
+        print("Total transitions: %d" % self.num_transition)
+        print("Average returns: %f" % self.avg_ret)
+        print("Std for returns: %f" % self.std_ret)
 
     def get_next_batch(self, batch_size, split=None):
         # if split is None:
