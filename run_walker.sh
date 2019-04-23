@@ -11,7 +11,6 @@ do
 	--policy_name "DDPG" \
 	--env_name "Walker2d-v1" \
 	--seed $i \
-	--start_timesteps 1000
+	--start_timesteps 1000 \
     --expert_path "dataset/walker.npz"
-
 done
