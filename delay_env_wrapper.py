@@ -5,6 +5,7 @@ import gym
 class DelayRewardWrapper(gym.Wrapper):
     def __init__(self, env, reward_freq, max_path_length):
         super(DelayRewardWrapper, self).__init__(env)
+        self._max_episode_steps = 1000
         self._reward_freq = reward_freq
         self._max_path_length = max_path_length
         self._current_step = 0
