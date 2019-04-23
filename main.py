@@ -52,7 +52,7 @@ if __name__ == "__main__":
     parser.add_argument("--policy_freq", default=2, type=int)			# Frequency of delayed policy updates
     parser.add_argument('--expert_path', type=str, default='dataset/hopper.npz')
     parser.add_argument('--traj_limitation', type=int, default=-1)
-    parser.add_argument('--reward_freq', type=int, default=0)
+    parser.add_argument('--reward_freq', type=int, default=10)
     parser.add_argument('--log_dir', type=str, default='log')
     args = parser.parse_args()
 
