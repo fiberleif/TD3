@@ -96,7 +96,7 @@ class MujocoDset(object):
         self.obs = np.array(clean_obs)
         self.acs = np.array(clean_acs)
         self.num_transition = len(self.obs)
-        self.dset = Dset(self.obs, self.acs, self.randomize)
+        self.dset = Dset(self.obs, self.acs, self.rews, self.next_obs, self.dones, self.randomize)
         self.log_info()
 
 
